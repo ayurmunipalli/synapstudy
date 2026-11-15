@@ -1,0 +1,197 @@
+/* Reading tool: passage (left, two columns) + Insights (right), webcam indicator top centre,
+   the lost-focus circle and arrow, the gaze calibration screen. */
+
+#view[data-view="reading"] { overflow: hidden; }
+
+.reading {
+  display: grid; grid-template-columns: minmax(0, 72fr) minmax(0, 28fr); gap: 16px;
+  height: 100%; padding: 16px 20px 20px;
+}
+
+/* ---------- passage panel ---------- */
+.passage-panel { position: relative; display: flex; flex-direction: column; min-height: 0; padding: 0; overflow: hidden; }
+.passage-head {
+  position: relative; flex: none; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  height: 50px; padding: 0 22px 0 44px; border-bottom: 1px solid var(--border);
+}
+.passage-heading { display: flex; align-items: baseline; gap: 12px; min-width: 0; max-width: 30%; }
+.passage-heading .passage-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 13px; }
+.passage-tools { display: flex; align-items: center; gap: 4px; }
+.passage-tools .btn { padding: 5px 9px; font-size: 12.5px; }
+.passage-tools label { display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; font-size: 12.5px; color: var(--muted); cursor: pointer; }
+.passage-tools input { accent-color: var(--accent); margin: 0; }
+
+/* webcam indicator: top centre of the passage panel, as in the sketch */
+.cam-indicator {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px 5px 9px;
+  border: 1px solid var(--border); border-radius: 999px; background: var(--bg); color: var(--muted);
+  font: 600 12px/1 var(--font-ui); letter-spacing: .02em; white-space: nowrap;
+}
+.cam-lens {
+  position: relative; width: 14px; height: 14px; border-radius: 50%; background: #3a362f;
+  box-shadow: inset 0 0 0 2px #1f1c18, 0 0 0 1px var(--border);
+}
+.cam-lens::after {
+  content: ""; position: absolute; left: 4px; top: 4px; width: 6px; height: 6px; border-radius: 50%;
+  background: #8d877b; transition: background .2s, box-shadow .2s;
+}
+.cam-indicator[data-state="tracking"] { color: var(--ok); border-color: #b9dcc6; background: var(--ok-soft); }
+.cam-indicator[data-state="tracking"] .cam-lens::after { background: #46d07f; box-shadow: 0 0 6px #46d07f; }
+.cam-indicator[data-state="calibrating"] { color: var(--warn); border-color: #e6d19c; background: var(--warn-soft); }
+.cam-indicator[data-state="calibrating"] .cam-lens::after { background: #f0b63c; animation: cam-blink 1s ease-in-out infinite; }
+.cam-indicator[data-state="lost"] { color: var(--danger); border-color: #ecc0b8; background: var(--danger-soft); }
+.cam-indicator[data-state="lost"] .cam-lens::after { background: #e8604f; }
+.cam-indicator[data-state="mouse"] { color: var(--accent-strong); border-color: #c8d7f3; background: var(--accent-soft); }
+.cam-indicator[data-state="mouse"] .cam-lens::after { background: var(--accent); }
+@keyframes cam-blink { 50% { opacity: .25; } }
+
+.passage-body { position: relative; flex: 1 1 auto; min-height: 0; }
+.page {
+  position: absolute; inset: 20px 44px 12px;
+  column-count: 2; column-gap: 56px; column-fill: auto; column-rule: 1px solid #ebe5d8;
+  overflow: hidden;
+  font: 400 23px/1.9 var(--font-reading); color: #26231d;
+  font-kerning: normal; font-variant-ligatures: common-ligatures; font-variant-numeric: oldstyle-nums;
+  overflow-wrap: break-word;
+}
+.page.page-measure { visibility: hidden; pointer-events: none; }
+.page.is-unmeasured { column-count: 1; overflow-y: auto; }   /* fallback when the page could not be measured */
+.page .para { margin: 0; text-indent: 1.5em; }
+.page .para:first-child, .page .para.cont { text-indent: 0; }
+.page .w { border-radius: 3px; transition: background-color .25s, box-shadow .25s; }
+.page .w.sent-hl { background: var(--accent-soft); box-shadow: .28em 0 0 var(--accent-soft), -.08em 0 0 var(--accent-soft); }
+.page .w.lost { color: var(--accent-strong); }
+.passage-panel.is-preparing .page { visibility: hidden; }
+
+.passage-cover {
+  position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 24px; text-align: center; background: var(--surface); color: var(--muted);
+}
+.passage-cover .h3 { color: var(--text); }
+
+.passage-foot {
+  flex: none; display: flex; align-items: center; gap: 10px; height: 54px; padding: 0 22px 0 44px;
+  border-top: 1px solid var(--border);
+}
+.passage-foot .page-count { min-width: 96px; text-align: center; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+.passage-foot .keys { color: var(--muted); font-size: 12px; margin-left: 6px; }
+.passage-foot .spacer { flex: 1; }
+.passage-foot .form-error { font-size: 13px; max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- insights panel ---------- */
+.insights-panel { display: flex; flex-direction: column; min-height: 0; padding: 0; overflow: hidden; }
+.insights-head { flex: none; display: flex; align-items: center; height: 50px; padding: 0 22px; border-bottom: 1px solid var(--border); }
+.insights-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; padding: 18px 22px 22px; display: flex; flex-direction: column; gap: 14px; }
+.insights-body .notice { font-size: 13px; padding: 9px 12px; flex-direction: column; gap: 8px; }
+.insights-body .notice .btn { align-self: flex-start; padding: 5px 10px; font-size: 12.5px; }
+.insights-title { font: 600 15px/1.3 var(--font-ui); }
+.insights-empty { color: var(--muted); font-size: 14px; line-height: 1.55; }
+.insights-panel.is-stopped .insights-feed-wrap { display: none; }
+.insights-feed-wrap { display: flex; flex-direction: column; gap: 12px; }
+
+.idea-feed { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.idea {
+  padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px; background: #fff;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+}
+.idea.is-fresh { animation: idea-in .6s ease-out; }
+.idea-text { font: 400 15.5px/1.5 var(--font-reading); }
+.idea .chip { background: var(--accent-soft); border-color: #c8d7f3; color: var(--accent-strong); }
+.idea-writing { display: flex; align-items: center; gap: 9px; padding: 4px 2px; color: var(--muted); font-size: 13px; font-style: italic; }
+.lapse-line { display: flex; align-items: center; gap: 9px; padding: 2px 2px; color: var(--muted); font-size: 13px; }
+.lapse-line::before { content: ""; flex: none; width: 10px; height: 10px; border-radius: 50%; border: 2.5px solid var(--accent); }
+.lapse-line.is-fresh { animation: idea-in .6s ease-out; }
+.lapse-line .badge { padding: 2px 6px; font-size: 9.5px; }
+.lapse-line .badge::before { display: none; }
+.estimate-note { margin: 0; padding: 0 2px; color: var(--muted); font-size: 12px; line-height: 1.45; }
+@keyframes idea-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* the STOP card: wording is the sketch's, verbatim */
+.stop-card {
+  padding: 24px 22px 22px; border: 2.5px solid var(--accent); border-radius: 16px; background: var(--accent-soft);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+  animation: stop-in .22s ease-out;
+}
+.stop-text { font: 600 23px/1.32 var(--font-ui); letter-spacing: -.012em; color: var(--text); }
+.stop-text strong { display: block; margin-bottom: 6px; font-size: 44px; font-weight: 800; line-height: 1; letter-spacing: .01em; color: var(--danger); }
+.stop-note { font-size: 13px; color: #274477; }
+.stop-approx { margin: -4px 0 0; }   /* "Gaze is approximate…": sits right under the main text */
+@keyframes stop-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+
+/* ---------- lost-focus circle and arrow (SVG layer in #overlay-root) ---------- */
+#overlay-root > .lapse-layer { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.lapse-ring, .lapse-pulse, .lapse-arrow, .lapse-arrowhead { fill: none; stroke: var(--accent); stroke-linecap: round; stroke-linejoin: round; }
+.lapse-ring { stroke-width: 3.5; transform-box: fill-box; transform-origin: center; transform: rotate(-4deg); animation: ring-in .28s ease-out; }
+.lapse-pulse { stroke-width: 2.5; transform-box: fill-box; transform-origin: center; animation: ring-pulse 1.5s ease-out infinite; }
+.lapse-arrow { stroke-width: 3.5; stroke-dasharray: 13 11; animation: arrow-flow .7s linear infinite, arrow-in .3s ease-out; }
+.lapse-arrowhead { stroke-width: 3.5; }
+@keyframes ring-in { from { opacity: 0; transform: rotate(-4deg) scale(1.5); } to { opacity: 1; transform: rotate(-4deg) scale(1); } }
+@keyframes ring-pulse { from { opacity: .75; transform: rotate(-4deg) scale(1); } to { opacity: 0; transform: rotate(-4deg) scale(1.6); } }
+@keyframes arrow-flow { from { stroke-dashoffset: 24; } to { stroke-dashoffset: 0; } }   /* dashes run toward the circle */
+@keyframes arrow-in { from { opacity: 0; } to { opacity: 1; } }
+/* A mark sized from the gaze error: an area, not a word. Lightly tinted; its entrance and pulse move
+   less, because the same scale on a wide ellipse would sweep across half the page. */
+.lapse-layer.is-wide .lapse-ring { fill: var(--accent); fill-opacity: .05; animation-name: ring-in-wide; }
+.lapse-layer.is-wide .lapse-pulse { animation-name: ring-pulse-wide; }
+@keyframes ring-in-wide { from { opacity: 0; transform: rotate(-4deg) scale(1.12); } to { opacity: 1; transform: rotate(-4deg) scale(1); } }
+@keyframes ring-pulse-wide { from { opacity: .6; transform: rotate(-4deg) scale(1); } to { opacity: 0; transform: rotate(-4deg) scale(1.12); } }
+
+/* ---------- gaze calibration (covers the view, never the top bar and its source badge) ---------- */
+#overlay-root > .calib { position: absolute; inset: var(--topbar-h) 0 0 0; background: var(--bg); overflow: hidden; }
+.calib-info { position: absolute; left: 50%; top: 27%; transform: translate(-50%, -50%); width: 520px; text-align: center; display: flex; flex-direction: column; gap: 8px; align-items: center; }
+.calib-status { position: absolute; left: 50%; top: 72%; transform: translate(-50%, -50%); width: 520px; text-align: center; display: flex; flex-direction: column; gap: 6px; align-items: center; }
+.calib-hint { font: 600 14px/1.4 var(--font-ui); color: var(--ok); }
+.calib-hint.is-warn { color: var(--danger); }
+.calib-hint.is-nudge { animation: nudge .35s ease-in-out; }
+.calib-left { color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+@keyframes nudge { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+.calib-dot {
+  position: absolute; width: 36px; height: 36px; margin: -18px 0 0 -18px; padding: 0;
+  border: 2.5px solid var(--accent); border-radius: 50%; background: var(--surface); cursor: pointer;
+  box-shadow: 0 0 0 6px rgba(43, 111, 224, .12);
+}
+.calib-dot::after {
+  content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--accent);
+  transform: scale(var(--fill, 0)); transition: transform .14s ease-out;   /* fills as it is clicked */
+}
+.calib-dot:active { transform: scale(.94); }
+.calib-dot[data-done] { border-color: var(--ok); box-shadow: none; cursor: default; opacity: .55; }
+.calib-dot[data-done]::after { background: var(--ok); }
+/* "more points" and the accuracy check: a one-line header above the passage area, where their dots go */
+.calib-strip {
+  position: absolute; left: 0; right: 0; top: 14px; padding: 0 20px;
+  display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 14px; white-space: nowrap;
+}
+.calib-strip .btn { padding: 5px 10px; font-size: 12.5px; }
+/* accuracy check: a dot that is looked at, never clicked */
+.calib-target {
+  position: absolute; width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%;
+  background: var(--accent); box-shadow: 0 0 0 7px rgba(43, 111, 224, .16); pointer-events: none;
+}
+.calib-target::after { content: ""; position: absolute; inset: 8px; border-radius: 50%; background: #fff; }
+.calib-target.is-in { animation: target-in .25s ease-out; }
+@keyframes target-in { from { transform: scale(2.2); opacity: .3; } to { transform: none; opacity: 1; } }
+.calib-result {
+  position: absolute; left: 50%; top: 44%; transform: translate(-50%, -50%); width: 640px; max-width: calc(100% - 48px);
+  text-align: center; display: flex; flex-direction: column; gap: 10px; align-items: center;
+}
+.calib-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 12px; }
+
+/* debugging aid, off by default */
+.gaze-dot {
+  position: fixed; left: 0; top: 0; width: 14px; height: 14px; margin: -7px 0 0 -7px; z-index: 200;
+  border-radius: 50%; border: 1.5px solid #fff; background: rgba(214, 69, 65, .6); pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lapse-arrow, .lapse-pulse { display: none; }   /* the circle only */
+}   /* (base.css already stops every other animation and transition, the calibration ones included) */
+
+/* "I'm back" on the STOP card (added at integration) */
+.stop-card .stop-back { margin-top: 10px; }
+.stop-card .stop-hint { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+
+/* Rehearsal replay row on Home (added at integration) */
+.replay-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.replay-row .replay-pick { width: auto; min-width: 260px; }

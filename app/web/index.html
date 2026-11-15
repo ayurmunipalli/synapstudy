@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SynapStudy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/reading.css">
+  <link rel="stylesheet" href="/css/session.css">
+</head>
+<body>
+  <header id="topbar">
+    <div class="topbar-left">
+      <span class="brand"><span class="brand-mark" aria-hidden="true"></span>SynapStudy</span>
+      <nav class="topnav" aria-label="Main">
+        <button type="button" class="nav-link" data-nav="home">Home</button>
+        <button type="button" class="nav-link" data-nav="history">History</button>
+      </nav>
+    </div>
+
+    <!-- Views fill this slot (timer, Finish button); the router empties it on every navigation. -->
+    <div id="topbar-session"></div>
+
+    <div class="topbar-right">
+      <span id="headband" class="headband">
+        <span id="contact-dots" class="contact-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span id="headband-text">Checking headband</span>
+      </span>
+      <span id="ai-chip" class="chip">AI: checking</span>
+      <span id="sim-keys" class="sim-keys" hidden><kbd>D</kbd> lose focus <kbd>R</kbd> resume <kbd>Z</kbd> clench</span>
+      <!-- Honesty rule: this badge is driven only by the server's status and is never hidden. -->
+      <span id="source-badge" class="badge badge-unknown" role="status">CONNECTING</span>
+    </div>
+  </header>
+
+  <main id="view"></main>
+  <div id="overlay-root"></div>
+
+  <noscript><p class="notice notice-warn" style="margin:24px">SynapStudy needs JavaScript.</p></noscript>
+  <script type="module" src="/js/main.js"></script>
+</body>
+</html>

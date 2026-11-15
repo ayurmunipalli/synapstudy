@@ -1,0 +1,114 @@
+{
+ "dev_session": "results/lookaway-20261114-234828.npz",
+ "dev_sha256": "e222d938e4dbd705c8d16b922165517a83d4704e048e78a2f49a9c1a496f1c3f",
+ "frozen_at": "2026-11-15 00:01:20",
+ "fa_cap": 0.2,
+ "variants": {
+  "combined": {
+   "params": {
+    "theta": 10,
+    "k": 0.75,
+    "q": 0.5,
+    "r": 1.5,
+    "N": 4
+   },
+   "dev": {
+    "hits": 7,
+    "n": 8,
+    "hit_rate": 0.875,
+    "median_delay": 1.9262107080139685,
+    "fa": 1,
+    "reading_min": 7.419333333333333,
+    "fa_per_min": 0.13478299937101268,
+    "kind_correct": 7,
+    "m_presses": 6,
+    "m_with_event": 1
+   },
+   "settings_meeting_fa_cap": 128,
+   "settings_tried": 192
+  },
+  "motion_only": {
+   "params": {
+    "theta": 10,
+    "N": 2
+   },
+   "dev": {
+    "hits": 5,
+    "n": 8,
+    "hit_rate": 0.625,
+    "median_delay": 1.376067833014531,
+    "fa": 0,
+    "reading_min": 7.419333333333333,
+    "fa_per_min": 0.0,
+    "kind_correct": 5,
+    "m_presses": 6,
+    "m_with_event": 1
+   },
+   "settings_meeting_fa_cap": 8,
+   "settings_tried": 8
+  },
+  "eye_only": {
+   "params": {
+    "k": 0.75,
+    "q": 0.3,
+    "N": 4
+   },
+   "dev": {
+    "hits": 2,
+    "n": 8,
+    "hit_rate": 0.25,
+    "median_delay": 3.3093748335086275,
+    "fa": 2,
+    "reading_min": 7.419333333333333,
+    "fa_per_min": 0.26956599874202536,
+    "kind_correct": 2,
+    "m_presses": 6,
+    "m_with_event": 0
+   },
+   "settings_meeting_fa_cap": 0,
+   "settings_tried": 16
+  },
+  "eeg_no_motion": {
+   "params": {
+    "k": 1.5,
+    "q": 0.3,
+    "r": 3,
+    "N": 2
+   },
+   "dev": {
+    "hits": 3,
+    "n": 8,
+    "hit_rate": 0.375,
+    "median_delay": 1.2197804170136806,
+    "fa": 0,
+    "reading_min": 7.419333333333333,
+    "fa_per_min": 0.0,
+    "kind_correct": 2,
+    "m_presses": 6,
+    "m_with_event": 2
+   },
+   "settings_meeting_fa_cap": 32,
+   "settings_tried": 48
+  },
+  "alpha_only": {
+   "params": {
+    "r": 3,
+    "N": 4
+   },
+   "dev": {
+    "hits": 0,
+    "n": 3,
+    "hit_rate": 0.0,
+    "median_delay": null,
+    "fa": 1,
+    "reading_min": 7.419333333333333,
+    "fa_per_min": 0.13478299937101268,
+    "kind_correct": 0,
+    "m_presses": 6,
+    "m_with_event": 0
+   },
+   "settings_meeting_fa_cap": 1,
+   "settings_tried": 6
+  }
+ }
+}

@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+app_data/
+results/*
+!results/lookaway_frozen_params.json
+!results/clenchhold_frozen_v2.json
+!results/nap-20261114-171747_model_n2n3.npz
+.DS_Store

@@ -1,0 +1,20 @@
+# Python 3.12 (OpenMuse needs >= 3.12)
+fastapi==0.163.0
+uvicorn==0.54.0
+websockets==17.4
+httpx==0.28.1
+anthropic==2.8.0
+youtube-transcript-api==1.2.5
+pypdf==7.1.0
+numpy==2.5.4
+scipy==1.18.1
+pylsl==1.18.7
+OpenMuse @ https://github.com/DominiqueMakowski/OpenMuse/zipball/main
+# night mode (sleep_cue.py, stage_nap.py)
+pygame==2.6.1
+mne==1.13.2
+yasa==0.8.1
+matplotlib==3.11.2
+lightgbm==4.7.0
+# tests
+pytest==9.2.0

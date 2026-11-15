@@ -1,0 +1,319 @@
+{
+ "version": "v2",
+ "dev_session": "results/clenchhold-20261115-035429.npz",
+ "sha256": "e29f7319600b79133c208902295fb0c7fe80d3d06b36292b95c199bc417526e1",
+ "frozen_at": "2026-11-15 04:08:03",
+ "params": {
+  "floor": 15,
+  "channels": "ears",
+  "gap_s": 0.5
+ },
+ "dev_result": {
+  "params": {
+   "floor": 15,
+   "channels": "ears",
+   "gap_s": 0.5
+  },
+  "hits": 10,
+  "false_gated": 0,
+  "false_by_block": {
+   "read": 0,
+   "holds": 0,
+   "chew": 0,
+   "talk": 0,
+   "yawn": 0
+  },
+  "triggers_in_yawn_cues": 0,
+  "median_delay": 3.742627063009593
+ },
+ "grid": [
+  {
+   "params": {
+    "floor": 8,
+    "channels": "all4",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 8,
+    "channels": "all4",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0.0,
+   "false_by_block": {
+    "read": 0.0,
+    "holds": 0.0,
+    "chew": 0.0,
+    "talk": 0.0,
+    "yawn": 1.0
+   },
+   "triggers_in_yawn_cues": 1,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 8,
+    "channels": "ears",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.731215771509099
+  },
+  {
+   "params": {
+    "floor": 8,
+    "channels": "ears",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.731215771509099
+  },
+  {
+   "params": {
+    "floor": 10,
+    "channels": "all4",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 10,
+    "channels": "all4",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0.0,
+   "false_by_block": {
+    "read": 0.0,
+    "holds": 0.0,
+    "chew": 0.0,
+    "talk": 0.0,
+    "yawn": 1.0
+   },
+   "triggers_in_yawn_cues": 1,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 10,
+    "channels": "ears",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 10,
+    "channels": "ears",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 12,
+    "channels": "all4",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.908638749999355
+  },
+  {
+   "params": {
+    "floor": 12,
+    "channels": "all4",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 12,
+    "channels": "ears",
+    "gap_s": 0.3
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 12,
+    "channels": "ears",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  },
+  {
+   "params": {
+    "floor": 15,
+    "channels": "all4",
+    "gap_s": 0.3
+   },
+   "hits": 3,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 4.274732375017209
+  },
+  {
+   "params": {
+    "floor": 15,
+    "channels": "all4",
+    "gap_s": 0.5
+   },
+   "hits": 7,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.724425334006355
+  },
+  {
+   "params": {
+    "floor": 15,
+    "channels": "ears",
+    "gap_s": 0.3
+   },
+   "hits": 9,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.862824375002077
+  },
+  {
+   "params": {
+    "floor": 15,
+    "channels": "ears",
+    "gap_s": 0.5
+   },
+   "hits": 10,
+   "false_gated": 0,
+   "false_by_block": {
+    "read": 0,
+    "holds": 0,
+    "chew": 0,
+    "talk": 0,
+    "yawn": 0
+   },
+   "triggers_in_yawn_cues": 0,
+   "median_delay": 3.742627063009593
+  }
+ ]
+}
